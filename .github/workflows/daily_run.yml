@@ -1,9 +1,9 @@
 name: Daily Job Digest
 
-on:               # when to trigger
+on:
   schedule:
-    - cron: "0 8 * * *"" cd /home/mitochondria/Desktop/Learning/job_aggregator && /home/mitochondria/Desktop/Learning/job_aggregator/job_aggregator_project/bin/python main.py
-
+    - cron: "0 8 * * *"
+  workflow_dispatch:    # allows manual trigger from GitHub
 
 jobs:
   run:
@@ -16,7 +16,7 @@ jobs:
 
     steps:                  
       - name: Checkout code
-        uses: actions/checkoutv3
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
