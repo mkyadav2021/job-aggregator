@@ -1,4 +1,5 @@
 import smtplib
+from html import escape
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from config import EMAIL_ADDRESS, EMAIL_PASSWORD, RECIPIENT_EMAIL
@@ -14,9 +15,9 @@ def send_digest(jobs):
     for job in jobs[:40]:
         html+=  f"""
         <div style="margin-bottom:15px; padding:10px; border-left:3px solid #2563eb;">
-            <strong>{job['title']}</strong> at {job['company']}<br>
-            Score: {job['score']}% | Keywords: {', '.join(job.get('matched_keywords', []))}<br>
-            <a href="{job['url']}">View Job</a>
+            <strong>{escape(job['title'])}</strong> at {escape(job['company'])}<br>
+            Score: {job['score']}% | Keywords: {escape(', '.join(job.get('matched_keywords', [])))}<br>
+            <a href="{escape(job['url'])}">View Job</a>
         </div>
         """
 

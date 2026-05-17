@@ -21,7 +21,8 @@ class RemoteOKScraper(BaseScraper):
             
         return jobs
 
-s = RemoteOKScraper()
-jobs = s.fetch_jobs()
-print(len(jobs))
-print(jobs[0])
+if __name__ == "__main__":
+    s = RemoteOKScraper()
+    jobs = s.fetch_jobs()
+    print(len(jobs))
+    print(jobs[0])

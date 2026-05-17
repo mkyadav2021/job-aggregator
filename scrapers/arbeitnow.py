@@ -22,8 +22,9 @@ class ArbeitnowScraper(BaseScraper):
             
         return jobs
 
-s = ArbeitnowScraper()
-jobs = s.fetch_jobs()
-print(len(jobs))
-print(jobs[0])
+if __name__ == "__main__":
+    s = ArbeitnowScraper()
+    jobs = s.fetch_jobs()
+    print(len(jobs))
+    print(jobs[0])
 
