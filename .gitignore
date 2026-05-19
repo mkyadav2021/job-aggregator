@@ -4,4 +4,3 @@ __pycache__/
 *.pyc
 *.db
 job_aggregator_project/
-job_aggregator_guide.md
