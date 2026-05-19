@@ -1,14 +1,14 @@
 # Job Aggregator
 
-A Python script that scrapes job listings from multiple sites, scores them against your resume keywords, and emails you a daily digest of the best matches.
+Tired of checking job openings every morning, try this to automate your search. It scrapes sites with public API (you can add any) daily, scores job listings against keywords from your resume, and emails you the best matches automatically.
 
-Built as a learning project.
+Built this as a learning project — first time working with APIs, SQLite, and GitHub Actions.
 
 ## What it does
 
-- Scrapes jobs from RemoteOK and Arbeitnow every day
-- Removes duplicate listings
-- Scores each job based on how many of your resume keywords appear in the title and description
+- Currently, it scrapes jobs from RemoteOK and Arbeitnow every day (you can expand this to scrape from whichever you like, given the site has public API)
+- Removes duplicate listings across both sources
+- Scores each job based on how many of your resume keywords show up in the title and description
 - Emails you the top results sorted by score
 
 ## Project structure
@@ -48,9 +48,9 @@ job_aggregator/
    EMAIL_PASSWORD=your_app_password
    RECIPIENT_EMAIL=where_to_send@gmail.com
    ```
-   For Gmail, you need an App Password — not your real password. Go to Google Account → Security → App Passwords to generate one.
+   For Gmail you'll need an App Password, not your actual password. Took me a bit to figure this out — go to Google Account → Security → App Passwords to generate one.
 
-4. Edit `config.py` to set your resume keywords and target job titles
+4. Edit `config.py` to add your own resume keywords and target job titles
 
 5. Run it
    ```bash
@@ -59,14 +59,14 @@ job_aggregator/
 
 ## Automated daily runs
 
-The project includes a GitHub Actions workflow that runs every day at 8 AM automatically. To use it:
+There's a GitHub Actions workflow that runs every day at 8 AM so you don't have to think about it. To set it up on your own fork:
 
 1. Fork this repo
 2. Go to Settings → Secrets and variables → Actions
 3. Add `EMAIL_ADDRESS`, `EMAIL_PASSWORD`, and `RECIPIENT_EMAIL` as secrets
-4. The workflow will run daily and email you the digest
+4. That's it — it'll run daily and email you the digest
 
-You can also trigger it manually from the Actions tab.
+You can also trigger it manually from the Actions tab if you don't want to wait.
 
 ## Adding more scrapers
 
