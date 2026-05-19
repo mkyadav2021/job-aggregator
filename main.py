@@ -10,7 +10,7 @@ from notifier import send_digest
 def run():
     create_tables()
 
-    #1 fetching
+    
     all_jobs=[]
 
     for Scraper in [RemoteOKScraper, ArbeitnowScraper]:
@@ -21,20 +21,20 @@ def run():
         except Exception as e:
             print(f"[{Scraper.source_name}] Error: {e}")
 
-    #2 dedeupicate
+    
     unique_jobs=deduplicate(all_jobs)
 
-    #3 filter jobs already in database
+    
     new_jobs=[j for j in unique_jobs if not job_exists(j["url"])]
 
-    #4 scoring
+    
     scored_jobs=[score_job(j) for j in new_jobs]
 
-    #5 saving to database
+   
     for job in scored_jobs:
         save_job(job)
 
-    #email
+    
     worthy_jobs=[j for j in scored_jobs if j["score"]>=20]
     send_digest(worthy_jobs)
 
